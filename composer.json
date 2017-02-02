@@ -1,0 +1,33 @@
+{
+    "name": "sunnysideup/ecommerce_assign_orders",
+    "type": "silverstripe-module",
+    "description": "Assign Silverstripe E-commerce orders to a specific shop administrator",
+    "keywords": [
+        "Silverstripe-CMS",
+        "CMS",
+        "Silverstripe",
+        "e-commerce",
+        "assign",
+        "administer",
+        "process",
+        "management",
+        "order steps",
+        "order step"
+    ],
+    "license": "Sunny Side Up (BSD-3-Clause and CUSTOM)",
+    "authors": [
+        {
+            "name": "Nicolaas Francken",
+            "email": "modules@sunnysideup.co.nz",
+            "role": "lead developer"
+        }
+    ],
+    "require": {
+        "silverstripe/framework": "~3.1",
+        "sunnysideup/ecommerce": "*",
+        "silverstripe/cms": "~3.1"
+    },
+    "extra": {
+        "installer-name": "ecommerce_assign_orders"
+    }
+}
