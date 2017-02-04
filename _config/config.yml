@@ -1,0 +1,9 @@
+---
+Name: ecommerce_assign_orders
+Before: 'mysite/*'
+After: 'framework/*','cms/*','ecommerce/*'
+---
+
+Order:
+  extensions:
+    - EcommerceAssignOrdersExtension
