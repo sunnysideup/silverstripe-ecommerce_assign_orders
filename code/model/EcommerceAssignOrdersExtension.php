@@ -19,7 +19,7 @@ class EcommerceAssignOrdersExtension extends DataExtension
         "AssignedAdminID" => array(
             'field' => 'TextField',
             'filter' => 'ExactMatchFilter',
-            'title' => 'Admin'
+            'title' => 'Assigned Admin'
         )
     );
 
@@ -46,7 +46,7 @@ class EcommerceAssignOrdersExtension extends DataExtension
         $fields->addFieldToTab(
             'Root.Next',
             $this->getAssignedAdminDropdown(),
-            'OrderSummaryHeader'
+            'OrderSummary'
         );
     }
 
