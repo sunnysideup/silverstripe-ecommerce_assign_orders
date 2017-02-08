@@ -23,6 +23,8 @@ class EcommerceAssignOrdersExtension extends DataExtension
         )
     );
 
+    private static $notify_by_email = true;
+
     public function getAssignedAdminNice()
     {
         if($this->owner->AssignedAdminID) {
@@ -65,6 +67,26 @@ class EcommerceAssignOrdersExtension extends DataExtension
             $title,
             $shopAdminAndCurrentCustomerArray
         );
+    }
+
+    public function onBeforeWrite()
+    {
+        if(Config::inst()->get('EcommerceAssignOrdersExtension', 'notify_by_email')) {
+            if($this->owner->AssignedAdminID) {
+                if($this->owner->isChanged('AssignedAdminID')) {
+                    $member = $this->owner->AssignedAdmin();
+                    if($member && $member->exists() && $member->Email) {
+                        $this->owner->sendEmail(
+                            $emailClassName = 'Order_InvoiceEmail',
+                            $subject = 'An order has been assigned to you on '.Director::absoluteURL(),
+                            $message = '<p>An order has been assigned to you:</p> <h1><a href="'.$this->owner->CMSEditLink().'">Open Order</a></h1>',
+                            $resend = true,
+                            $adminOnlyOrToEmail = $member->Email
+                        );
+                    }
+                }
+            }
+        }
     }
 
 }
