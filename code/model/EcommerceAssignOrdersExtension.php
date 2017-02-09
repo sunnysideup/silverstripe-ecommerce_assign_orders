@@ -57,9 +57,7 @@ class EcommerceAssignOrdersExtension extends DataExtension
 
     protected function getAssignedAdminDropdown()
     {
-        $shopAdminAndCurrentCustomerArray = array_merge(
-            EcommerceRole::list_of_admins(true)
-        );
+        $shopAdminAndCurrentCustomerArray = EcommerceRole::list_of_admins(true);
         $titleArray = Config::inst()->get('EcommerceAssignOrdersExtension', 'searchable_fields');
         $title = isset($titleArray['AssignedAdminID']['title']) ? $titleArray['AssignedAdminID']['title'] : 'Admin';
         return DropdownField::create(
@@ -69,16 +67,17 @@ class EcommerceAssignOrdersExtension extends DataExtension
         );
     }
 
-    public function onBeforeWrite()
+    public function onAfterWrite()
     {
         if(Config::inst()->get('EcommerceAssignOrdersExtension', 'notify_by_email')) {
             if($this->owner->AssignedAdminID) {
                 if($this->owner->isChanged('AssignedAdminID')) {
-                    $member = $this->owner->AssignedAdmin();
+                    //$member = $this->owner->AssignedAdmin();
+                    $member = Member::get()->byID($this->owner->AssignedAdminID);
                     if($member && $member->exists() && $member->Email) {
                         $this->owner->sendEmail(
                             $emailClassName = 'Order_InvoiceEmail',
-                            $subject = 'An order has been assigned to you on '.Director::absoluteURL(),
+                            $subject = 'An order has been assigned to you on '.Director::absoluteURL('/'),
                             $message = '<p>An order has been assigned to you:</p> <h1><a href="'.$this->owner->CMSEditLink().'">Open Order</a></h1>',
                             $resend = true,
                             $adminOnlyOrToEmail = $member->Email
@@ -88,5 +87,6 @@ class EcommerceAssignOrdersExtension extends DataExtension
             }
         }
     }
+
 
 }
