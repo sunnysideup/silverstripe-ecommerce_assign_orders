@@ -2,7 +2,6 @@
 
 class EcommerceAssignOrdersExtension extends DataExtension
 {
-
     private static $has_one = array(
         'AssignedAdmin' => 'Member'
     );
@@ -27,9 +26,9 @@ class EcommerceAssignOrdersExtension extends DataExtension
 
     public function getAssignedAdminNice()
     {
-        if($this->owner->AssignedAdminID) {
-            if($admin = $this->owner->AssignedAdmin()) {
-                if($admin->exists()) {
+        if ($this->owner->AssignedAdminID) {
+            if ($admin = $this->owner->AssignedAdmin()) {
+                if ($admin->exists()) {
                     return $admin->getTitle();
                 }
             }
@@ -69,12 +68,12 @@ class EcommerceAssignOrdersExtension extends DataExtension
 
     public function onAfterWrite()
     {
-        if(Config::inst()->get('EcommerceAssignOrdersExtension', 'notify_by_email')) {
-            if($this->owner->AssignedAdminID) {
-                if($this->owner->isChanged('AssignedAdminID')) {
+        if (Config::inst()->get('EcommerceAssignOrdersExtension', 'notify_by_email')) {
+            if ($this->owner->AssignedAdminID) {
+                if ($this->owner->isChanged('AssignedAdminID')) {
                     //$member = $this->owner->AssignedAdmin();
                     $member = Member::get()->byID($this->owner->AssignedAdminID);
-                    if($member && $member->exists() && $member->Email) {
+                    if ($member && $member->exists() && $member->Email) {
                         $this->owner->sendEmail(
                             $emailClassName = 'Order_InvoiceEmail',
                             $subject = 'An order has been assigned to you on '.Director::absoluteURL('/'),
@@ -87,6 +86,4 @@ class EcommerceAssignOrdersExtension extends DataExtension
             }
         }
     }
-
-
 }
