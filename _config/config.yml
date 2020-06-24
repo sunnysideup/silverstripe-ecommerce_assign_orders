@@ -1,6 +1,6 @@
 ---
 Name: ecommerce_assign_orders
-Before: 'mysite/*'
+Before: 'app/*'
 After: 'framework/*','cms/*','ecommerce/*'
 ---
 
