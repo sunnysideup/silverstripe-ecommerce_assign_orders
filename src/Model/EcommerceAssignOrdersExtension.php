@@ -19,17 +19,6 @@ use Sunnysideup\Ecommerce\Email\OrderInvoiceEmail;
 use SilverStripe\Control\Director;
 use SilverStripe\ORM\DataExtension;
 
-
-
-
-/**
-  * ### @@@@ START REPLACEMENT @@@@ ###
-  * WHY: automated upgrade
-  * OLD:  extends DataExtension (ignore case)
-  * NEW:  extends DataExtension (COMPLEX)
-  * EXP: Check for use of $this->anyVar and replace with $this->anyVar[$this->owner->ID] or consider turning the class into a trait
-  * ### @@@@ STOP REPLACEMENT @@@@ ###
-  */
 class EcommerceAssignOrdersExtension extends DataExtension
 {
     private static $has_one = array(
