@@ -1,6 +1,6 @@
 {
     "name": "sunnysideup/ecommerce_assign_orders",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "description": "Assign Silverstripe E-commerce orders to a specific shop administrator",
     "keywords": [
         "Silverstripe-CMS",
