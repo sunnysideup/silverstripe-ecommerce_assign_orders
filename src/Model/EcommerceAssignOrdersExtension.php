@@ -1,5 +1,16 @@
 <?php
 
+namespace Sunnysideup\EcommerceAssignOrders\Model;
+
+use DataExtension;
+use FieldList;
+use EcommerceRole;
+use Config;
+use DropdownField;
+use Member;
+use Director;
+
+
 
 /**
   * ### @@@@ START REPLACEMENT @@@@ ###
