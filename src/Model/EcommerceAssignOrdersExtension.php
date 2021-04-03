@@ -45,11 +45,12 @@ class EcommerceAssignOrdersExtension extends DataExtension
                 }
             }
         }
+
         return 'n/a';
     }
 
     /**
-     * Update Fields
+     * Update Fields.
      */
     public function updateCMSFields(FieldList $fields)
     {
@@ -91,6 +92,7 @@ class EcommerceAssignOrdersExtension extends DataExtension
         $shopAdminAndCurrentCustomerArray = EcommerceRole::list_of_admins(true);
         $titleArray = Config::inst()->get(EcommerceAssignOrdersExtension::class, 'searchable_fields');
         $title = isset($titleArray['AssignedAdminID']['title']) ? $titleArray['AssignedAdminID']['title'] : 'Admin';
+
         return DropdownField::create(
             'AssignedAdminID',
             $title,
