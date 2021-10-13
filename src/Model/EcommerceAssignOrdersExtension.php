@@ -38,8 +38,8 @@ class EcommerceAssignOrdersExtension extends DataExtension
 
     public function getAssignedAdminNice()
     {
-        if ($this->owner->AssignedAdminID) {
-            if ($admin = $this->owner->AssignedAdmin()) {
+        if ($this->getOwner()->AssignedAdminID) {
+            if ($admin = $this->getOwner()->AssignedAdmin()) {
                 if ($admin->exists()) {
                     return $admin->getTitle();
                 }
@@ -69,15 +69,15 @@ class EcommerceAssignOrdersExtension extends DataExtension
     public function onAfterWrite()
     {
         if (Config::inst()->get(EcommerceAssignOrdersExtension::class, 'notify_by_email')) {
-            if ($this->owner->AssignedAdminID) {
-                if ($this->owner->isChanged('AssignedAdminID')) {
-                    //$member = $this->owner->AssignedAdmin();
-                    $member = Member::get()->byID($this->owner->AssignedAdminID);
+            if ($this->getOwner()->AssignedAdminID) {
+                if ($this->getOwner()->isChanged('AssignedAdminID')) {
+                    //$member = $this->getOwner()->AssignedAdmin();
+                    $member = Member::get()->byID($this->getOwner()->AssignedAdminID);
                     if ($member && $member->exists() && $member->Email) {
-                        $this->owner->sendEmail(
+                        $this->getOwner()->sendEmail(
                             $emailClassName = OrderInvoiceEmail::class,
                             $subject = 'An order has been assigned to you on ' . Director::absoluteURL('/'),
-                            $message = '<p>An order has been assigned to you:</p> <h1><a href="' . $this->owner->CMSEditLink() . '">Open Order</a></h1>',
+                            $message = '<p>An order has been assigned to you:</p> <h1><a href="' . $this->getOwner()->CMSEditLink() . '">Open Order</a></h1>',
                             $resend = true,
                             $adminOnlyOrToEmail = $member->Email
                         );
