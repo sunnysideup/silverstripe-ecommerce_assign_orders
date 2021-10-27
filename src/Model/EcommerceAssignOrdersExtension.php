@@ -39,7 +39,8 @@ class EcommerceAssignOrdersExtension extends DataExtension
     public function getAssignedAdminNice()
     {
         if ($this->getOwner()->AssignedAdminID) {
-            if ($admin = $this->getOwner()->AssignedAdmin()) {
+            $admin = $this->getOwner()->AssignedAdmin();
+            if ($admin) {
                 if ($admin->exists()) {
                     return $admin->getTitle();
                 }
