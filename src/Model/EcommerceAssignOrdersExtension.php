@@ -73,7 +73,7 @@ class EcommerceAssignOrdersExtension extends DataExtension
             if ($this->getOwner()->AssignedAdminID) {
                 if ($this->getOwner()->isChanged('AssignedAdminID')) {
                     //$member = $this->getOwner()->AssignedAdmin();
-                    $member = Member::get()->byID($this->getOwner()->AssignedAdminID);
+                    $member = Member::get_by_id($this->getOwner()->AssignedAdminID);
                     if ($member && $member->exists() && $member->Email) {
                         $this->getOwner()->sendEmail(
                             $emailClassName = OrderInvoiceEmail::class,
