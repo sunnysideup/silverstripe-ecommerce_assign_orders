@@ -12,6 +12,13 @@ use SilverStripe\Security\Member;
 use Sunnysideup\Ecommerce\Email\OrderInvoiceEmail;
 use Sunnysideup\Ecommerce\Model\Extensions\EcommerceRole;
 
+/**
+ * Class \Sunnysideup\EcommerceAssignOrders\Model\EcommerceAssignOrdersExtension
+ *
+ * @property \Sunnysideup\Ecommerce\Model\Order|\Sunnysideup\EcommerceAssignOrders\Model\EcommerceAssignOrdersExtension $owner
+ * @property int $AssignedAdminID
+ * @method \SilverStripe\Security\Member AssignedAdmin()
+ */
 class EcommerceAssignOrdersExtension extends DataExtension
 {
     private static $has_one = [
