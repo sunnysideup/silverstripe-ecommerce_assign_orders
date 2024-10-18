@@ -63,7 +63,7 @@ class EcommerceAssignOrdersExtension extends DataExtension
     public function updateCMSFields(FieldList $fields)
     {
         $fields->addFieldToTab(
-            'Root.Who',
+            'Root.Process',
             $this->getAssignedAdminDropdown(),
             'OrderSummary'
         );
